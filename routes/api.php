@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Backend\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,3 +10,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::apiResource('todos',TodoController::class);
+
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register'])->name('auth.register');
+});
