@@ -11,8 +11,14 @@ interface AuthInterface
     public function register($request);
 
     # Logout
-    public function logout();
+    public function logoutAllTokens($user);
 
     # Get user by ID
     public function getUserById($id);
+
+    # Find user by email address  (used for login)
+    public function findByEmail(string $email);
+    # Get user by
+    public function all();
+
 }
