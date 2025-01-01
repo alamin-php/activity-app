@@ -9,6 +9,8 @@ interface TodoInterface
 
     # Fetch a specific Todo by ID
     public function getTodoById($id);
+    # Fetch a specific Todo by ID
+    public function getTodoByUser(int $userId);
 
     # Create a new Todo
     public function createTodo($request);

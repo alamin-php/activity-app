@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::apiResource('todos',TodoController::class);
+Route::apiResource('todos',TodoController::class)->middleware('auth:sanctum');
+Route::get('get-user-todo',[TodoController::class, 'getTodoByUser'])->middleware('auth:sanctum');
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register'])->name('auth.register');

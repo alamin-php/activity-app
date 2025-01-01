@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
@@ -42,7 +43,12 @@ class AuthController extends Controller
     public function allUsers()
     {
         $users = $this->authService->allUsers();
-        return ApiResponse::success(status: 'success', data: $users);
+        if (!$users->isEmpty()) {
+            $data = UserResource::collection($users);
+            return ApiResponse::success(status: 'success', data: $data);
+        } else {
+            return ApiResponse::success(status: 'error', message: 'No users found', code: 404);
+        }
     }
 
     public function logout(Request $request)

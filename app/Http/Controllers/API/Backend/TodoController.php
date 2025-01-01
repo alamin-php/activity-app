@@ -92,4 +92,17 @@ class TodoController extends Controller
             return ApiResponse::success(status: 'error', message: 'Unable to delete Todo', code: 404);
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function getTodoByUser()
+    {
+        $todo = $this->todoService->getTodoByUser();
+        if ($todo) {
+            return ApiResponse::success(status: 'success', data: $todo);
+        } else {
+            return ApiResponse::success(status: 'error', message: 'Unable to fetch Todo', code: 404);
+        }
+    }
 }

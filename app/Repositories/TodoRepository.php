@@ -32,6 +32,14 @@ class TodoRepository implements TodoInterface
         return Todo::find($id);
     }
     /**
+     * Function: getTodoById
+     * Description: The function fetch specific the Todo form Model
+     */
+    public function getTodoByUser(int $userId)
+    {
+        return Todo::where('id', $userId)->get();
+    }
+    /**
      * Function: createTodo
      * Description: The function create a new Todo
      */

@@ -38,9 +38,20 @@ class TodoService
      * Function: getAllTodos
      * Description: The function fetch all Todos from the repository
      */
+    public function getTodoByUser()
+    {
+        $userId = auth()->id();
+        return $this->todoInterface->getTodoByUser($userId);
+    }
+
+    /**
+     * Function: getAllTodos
+     * Description: The function fetch all Todos from the repository
+     */
     public function createTodo($request)
     {
         $todo = $this->mapTodoFormData($request);
+        $todo['user_id'] = auth()->id();
         return $this->todoInterface->createTodo($todo);
     }
 
